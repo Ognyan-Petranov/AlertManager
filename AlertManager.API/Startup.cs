@@ -28,6 +28,7 @@ namespace AlertManager.API
             services.RegisterPersistanceEF(Configuration);
             services.AddSingleton(Configuration);
             services.AddMvc();
+            services.AddHttpClient();
 
             services.AddMediatR(typeof(CreateAlertCommand).GetTypeInfo().Assembly);
         }
