@@ -3,8 +3,6 @@ using AlertManager.Application.Features.Commands.CreateAlert;
 using AlertManager.Application.Features.Queries;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace AlertManager.API.Controllers
 {
     [Route("api/alerts")]
@@ -19,7 +17,6 @@ namespace AlertManager.API.Controllers
             var result = await Mediator.Send(query);
 
             return Ok(result);
-
         }
 
         [HttpPost]

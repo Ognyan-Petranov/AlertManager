@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AlertManager.Application.Interfaces;
 using AlertManager.Domain.Models;

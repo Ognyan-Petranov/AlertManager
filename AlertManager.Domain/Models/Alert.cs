@@ -9,6 +9,9 @@ namespace AlertManager.Domain.Models
         {
             Condition = condition;
             AlertId = Guid.NewGuid().ToString();
+            // As i dont remember the exact task and didn't get the chance to copy it,
+            // i am setting IsOpen default value to true, as it makes sense to me.
+            IsOpen = true;
         }
 
         [Key]
