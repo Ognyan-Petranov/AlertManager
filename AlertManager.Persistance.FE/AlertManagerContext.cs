@@ -1,7 +1,7 @@
 ﻿using AlertManager.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AlertManager.Persistance.FE
+namespace AlertManager.Persistance.EF
 {
     public class AlertManagerContext : DbContext
     {

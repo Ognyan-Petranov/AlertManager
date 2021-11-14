@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace AlertManager.API
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -19,11 +18,6 @@ namespace AlertManager.API
                     webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
                     {
                         var env = hostingContext.HostingEnvironment;
-
-                        config
-                            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false)
-                            .AddEnvironmentVariables();
                     });
                 });
     }
