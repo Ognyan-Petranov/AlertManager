@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AlertManager.Persistance.FE.Extensions
+namespace AlertManager.Persistance.EF.Extensions
 {
     public static class DependencyRegistrationExtensions
     {
