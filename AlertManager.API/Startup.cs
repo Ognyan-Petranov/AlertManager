@@ -38,7 +38,9 @@ namespace AlertManager.API
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<AlertManagerContext>();
-                dbContext.Database.Migrate();
+                 var ss = dbContext.Database.CanConnect();
+                 var ss1 = dbContext.Database.GetConnectionString();
+                 dbContext.Database.Migrate();
             }
 
             if (env.IsDevelopment())

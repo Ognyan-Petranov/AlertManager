@@ -11,5 +11,14 @@ namespace AlertManager.Persistance.EF
         }
 
         public DbSet<Alert> Alerts { get; set; }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=DESKTOP-TG07H0V;Database=AlertManager;Integrated Security=true;");
+            }
+        }
     }
 }
