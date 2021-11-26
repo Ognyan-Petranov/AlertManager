@@ -17,7 +17,6 @@ namespace AlertManager.Persistance.EF
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-TG07H0V;Database=AlertManager;Integrated Security=true;");
             }
         }
     }
