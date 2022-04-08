@@ -4,14 +4,16 @@ using AlertManager.Persistance.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlertManager.Persistance.EF.Migrations
 {
     [DbContext(typeof(AlertManagerContext))]
-    partial class AlertManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220407195649_AddConditionsTable")]
+    partial class AddConditionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

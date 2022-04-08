@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-﻿using System.Threading;
 using System.Threading.Tasks;
 using AlertManager.Application.Interfaces;
 using AlertManager.Domain.Models;
@@ -24,16 +23,14 @@ namespace AlertManager.Application.Features.Commands.CreateAlert
         {
             var result = new HashSet<Alert>();
 
-            for (int i = 0; i < request.Condition.Length; i++)
-            {
-                var alert = new Alert(request.Condition[i]);
-                alert.IsValid = _validationService.Validate(alert.Condition);
-                result.Add(alert);
 
-            }
+            var alert = new Alert(request.Condition.Expression);
+            alert.IsValid = _validationService.Validate(alert.Condition);
+            result.Add(alert);
+
 
             await _alertManagerContext.Alerts.AddRangeAsync(result);
-            await _alertManagerContext.SaveChangesAsync();
+            _alertManagerContext.SaveChanges();
 
             return Unit.Value;
         }
