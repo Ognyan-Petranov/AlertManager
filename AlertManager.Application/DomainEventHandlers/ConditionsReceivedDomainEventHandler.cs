@@ -12,12 +12,10 @@ namespace AlertManager.Application.DomainEventHandlers
     public class ConditionsReceivedDomainEventHandler : INotificationHandler<ConditionsReceivedDomainEvent>
     {
         private readonly HttpClient _httpClient;
-        private readonly IMediator _mediator;
 
-        public ConditionsReceivedDomainEventHandler(HttpClient httpClient, IMediator mediator)
+        public ConditionsReceivedDomainEventHandler(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _mediator = mediator;
         }
 
         public async Task Handle(ConditionsReceivedDomainEvent notification, CancellationToken cancellationToken)
