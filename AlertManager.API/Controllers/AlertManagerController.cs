@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
+using AlertManager.API.Models.Requests;
 using AlertManager.Application.Features.Commands.CreateAlert;
 using AlertManager.Application.Features.Commands.CreateCondition;
 using AlertManager.Application.Features.Queries;
-using AlertManager.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlertManager.API.Controllers
@@ -23,9 +23,9 @@ namespace AlertManager.API.Controllers
 
         [HttpPost]
         [Route("validate")]
-        public async Task<ActionResult> ValidateAlerts([FromBody] Condition condition)
+        public async Task<ActionResult> ValidateAlerts([FromBody] CreateAlertRequest request)
         {
-            var command = new CreateAlertCommand(condition);
+            var command = Mapper.Map<CreateAlertCommand>(request);
             var result = await Mediator.Send(command);
 
             return Ok(result);

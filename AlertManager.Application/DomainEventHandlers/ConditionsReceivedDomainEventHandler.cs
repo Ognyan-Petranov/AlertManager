@@ -1,9 +1,11 @@
 ﻿using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using AlertManager.Application.Features.Commands.CreateAlert;
+using AlertManager.Application.Models.Requests;
 using AlertManager.Domain.DomainEvents;
 using MediatR;
+using Newtonsoft.Json;
 
 namespace AlertManager.Application.DomainEventHandlers
 {
@@ -20,14 +22,14 @@ namespace AlertManager.Application.DomainEventHandlers
 
         public async Task Handle(ConditionsReceivedDomainEvent notification, CancellationToken cancellationToken)
         {
-            // TODO: Implement http call to the controller
-            // var json = JsonConvert.SerializeObject(notification);
-            //var data = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            var request = new CreateAlertRequest(notification.Conditions.Expression);
+            var json = JsonConvert.SerializeObject(request);
+            var data = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
-            // var response = await _httpClient.PostAsync("http://localhost:57017/api/alerts/validate", data);
+            await _httpClient.PostAsync("http://localhost:57017/api/alerts/validate", data);
 
-            var command = new CreateAlertCommand(notification.Conditions);
-            await _mediator.Send(command);
+            //var command = new CreateAlertCommand(notification.Conditions);
+            //await _mediator.Send(command);
         }
     }
 }

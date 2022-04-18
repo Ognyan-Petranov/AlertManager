@@ -24,7 +24,7 @@ namespace AlertManager.Application.Features.Commands.CreateAlert
             var result = new HashSet<Alert>();
 
 
-            var alert = new Alert(request.Condition.Expression);
+            var alert = new Alert(request.Expression);
             alert.IsValid = _validationService.Validate(alert.Condition);
             result.Add(alert);
 

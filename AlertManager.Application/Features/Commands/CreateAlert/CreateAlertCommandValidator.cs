@@ -7,7 +7,7 @@ namespace AlertManager.Application.Features.Commands.CreateAlert
     {
         public CreateAlertCommandValidator()
         {
-            RuleFor(x => x.Condition)
+            RuleFor(x => x.Expression)
                 .NotEmpty()
                 .WithMessage(ValidationErorMessage.InvalidCondition);
         }

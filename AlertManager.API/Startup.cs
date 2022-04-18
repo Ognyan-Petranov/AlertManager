@@ -31,6 +31,7 @@ namespace AlertManager.API
             services.AddHttpClient();
 
             services.AddMediatR(typeof(CreateAlertCommand).GetTypeInfo().Assembly);
+            services.AddAutoMapper(typeof(Startup).GetTypeInfo().Assembly);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,9 +39,9 @@ namespace AlertManager.API
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<AlertManagerContext>();
-                 var ss = dbContext.Database.CanConnect();
-                 var ss1 = dbContext.Database.GetConnectionString();
-                 dbContext.Database.Migrate();
+                var ss = dbContext.Database.CanConnect();
+                var ss1 = dbContext.Database.GetConnectionString();
+                dbContext.Database.Migrate();
             }
 
             if (env.IsDevelopment())
