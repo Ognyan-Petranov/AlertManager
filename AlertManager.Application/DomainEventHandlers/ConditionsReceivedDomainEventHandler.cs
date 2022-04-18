@@ -21,7 +21,7 @@ namespace AlertManager.Application.DomainEventHandlers
         public async Task Handle(ConditionsReceivedDomainEvent notification, CancellationToken cancellationToken)
         {
             // TODO: Implement http call to the controller
-            var json = JsonConvert.SerializeObject(notification);
+            // var json = JsonConvert.SerializeObject(notification);
             //var data = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
             // var response = await _httpClient.PostAsync("http://localhost:57017/api/alerts/validate", data);

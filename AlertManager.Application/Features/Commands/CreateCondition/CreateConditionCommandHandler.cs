@@ -34,7 +34,7 @@ namespace AlertManager.Application.Features.Commands.CreateCondition
             }
 
             await _alertManagerContext.AddRangeAsync(result);
-            _alertManagerContext.SaveChanges();
+            await _alertManagerContext.SaveChangesAsync();
 
             return Unit.Value;
         }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AlertManager.Domain.Models.Interfaces;
 using MediatR;
 
 namespace AlertManager.Domain.Models
 {
-    public abstract class Entity
+    public abstract class Entity : IEntity
     {
         private List<INotification> _domainEvents;
         public List<INotification> DomainEvents => _domainEvents;

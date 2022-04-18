@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AlertManager.Domain.Models;
+using AlertManager.Domain.Models.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,24 +22,27 @@ namespace AlertManager.Persistance.EF
 
         public DbSet<Condition> Conditions { get; set; }
 
-        public override int SaveChanges()
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var domainEventEntities = ChangeTracker.Entries<Entity>()
+            var domainEventEntities = ChangeTracker.Entries<IEntity>()
                 .Select(po => po.Entity)
-                .Where(po => po.DomainEvents.Any())
+                .Where(po => po.DomainEvents != null && po.DomainEvents.Any())?
                 .ToArray();
 
-            foreach (var entity in domainEventEntities)
+            if (domainEventEntities != null && domainEventEntities.Any())
             {
-                var events = entity.DomainEvents.ToArray();
-                entity.DomainEvents.Clear();
-                foreach (var domainEvent in events)
+                foreach (var entity in domainEventEntities)
                 {
-                    _mediator.Publish(domainEvent);
+                    var events = entity.DomainEvents.ToArray();
+                    entity.DomainEvents.Clear();
+                    foreach (var domainEvent in events)
+                    {
+                        await _mediator.Publish(domainEvent);
+                    }
+
                 }
             }
-
-            return base.SaveChanges();
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }

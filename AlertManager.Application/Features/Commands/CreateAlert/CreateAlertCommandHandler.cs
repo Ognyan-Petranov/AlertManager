@@ -30,7 +30,7 @@ namespace AlertManager.Application.Features.Commands.CreateAlert
 
 
             await _alertManagerContext.Alerts.AddRangeAsync(result);
-            _alertManagerContext.SaveChanges();
+            await _alertManagerContext.SaveChangesAsync();
 
             return Unit.Value;
         }
