@@ -27,9 +27,6 @@ namespace AlertManager.Application.DomainEventHandlers
             var data = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
 
             await _httpClient.PostAsync("http://localhost:57017/api/alerts/validate", data);
-
-            //var command = new CreateAlertCommand(notification.Conditions);
-            //await _mediator.Send(command);
         }
     }
 }
